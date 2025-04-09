@@ -1,16 +1,19 @@
 FROM python:3.10-slim
 
-# Install ffmpeg (includes ffprobe)
-RUN apt update && apt install -y ffmpeg
+# Install ffmpeg and clean up
+RUN apt update && apt install -y ffmpeg && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
 
-# Copy files
-COPY . .
+# Copy requirements separately for caching
+COPY requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Run FastAPI app
-# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Copy rest of the code
+COPY . .
+
+# Run FastAPI app using uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

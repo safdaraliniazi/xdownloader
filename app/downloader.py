@@ -7,6 +7,9 @@ def stream_twitter_video(url):
         ydl_opts = {
             'quiet': True,
             'skip_download': True,
+            'username' : 'xaudiovideo',
+            'password' : 'Xaudiovideo12345678',
+            'logger' : logging.getLogger()
         }
         with YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=False)

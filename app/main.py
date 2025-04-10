@@ -25,3 +25,7 @@ class URLRequest(BaseModel):
 def twitter_download(request : URLRequest):
     return stream_twitter_video(request.url)
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+

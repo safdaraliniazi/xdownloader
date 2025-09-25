@@ -2,8 +2,14 @@ services:
   - type: web
     name: xdownloader-api
     env: python
-    buildCommand: pip install -r requirements.txt
+    region: oregon
+    plan: free
+    buildCommand: chmod +x build.sh && ./build.sh
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11.4
+        value: 3.10.12
+      - key: PIP_NO_CACHE_DIR
+        value: 1
+      - key: PIP_DISABLE_PIP_VERSION_CHECK
+        value: 1

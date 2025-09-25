@@ -2,9 +2,14 @@ from fastapi import FastAPI, Request
 from .downloader import stream_twitter_video
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import os
 
 
-app = FastAPI()
+app = FastAPI(
+    title="XDownloader API",
+    description="Video downloader API for social media platforms",
+    version="1.0.0"
+)
 
 
 # CORS configuration for production deployment

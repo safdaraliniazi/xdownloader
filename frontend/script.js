@@ -1,3 +1,6 @@
+// API Configuration
+const API_BASE_URL = 'https://xdownloader-6y7l.onrender.com';
+
 // Cache DOM elements
 const form = document.getElementById('url-form');
 const urlInput = document.getElementById('url-input');
@@ -130,7 +133,7 @@ const debouncedSubmit = debounce(async (e) => {
             return;
         }
 
-        const response = await fetchWithTimeout('http://localhost:8000/download/twitter', {
+        const response = await fetchWithTimeout(`${API_BASE_URL}/download/twitter`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
